@@ -14,6 +14,8 @@ const infos = YAML.load(infosRaw);
 const logoRaw = fs.readFileSync('Data/logo.yml');
 const logo = YAML.load(logoRaw);
 
+//NOTE: Functions
+
 function logoColors(logoObject) {
   return logoObject.map(logoLine => {
     const { text, color } = logoLine;
@@ -21,4 +23,24 @@ function logoColors(logoObject) {
   });
 }
 
-console.log(logoColors(logo?.logo));
+function separator(size = 6) {
+  return chalk.whiteBright('-'.repeat(size));
+}
+
+function componentsFormat(key, value) {
+  if (Array.isArray(value)) {
+    value = value.join(', ');
+  }
+
+  return `${chalk.cyanBright(String(key))}${chalk.whiteBright(
+    `: ${String(value)}`
+  )}`;
+}
+
+function infosComponents(infosObject) {
+  const keys = Object.keys(infosObject);
+  const values = Object.values(infosObject);
+  return keys.map((key, index) =>
+    key === 'separator' ? separator() : componentsFormat(key, values[index])
+  );
+}

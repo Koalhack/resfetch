@@ -1,6 +1,21 @@
-experiences:
-  skill: ['dactylo', 'etc']
-  language: ['CSS3', 'HTML5']
-test:
-  - test
-  - bonjour
+Pseudonyme: "Koalhack"
+Firstname: "Alexandre"
+Lastname: "Saner"
+Age: 23
+Hobbies:
+  - "Cinema"
+  - "Photography"
+  - "video Games"
+Skills: 
+  - "Project Management"
+  - "Design UX/UI"
+  - "Design 2D/3D"
+  - "Typewriting"
+Languages:
+  - "Javascript"
+  - "Typescript"
+  - "Golang"
+  - "Rust"
+  - "PHP"
+  - "HTML5"
+  - "CSS3"
