@@ -23,6 +23,16 @@ function logoColors(logoObject) {
   });
 }
 
+function logoMaxCharacterPerLine(logoObject) {
+  return logoObject.reduce(
+    (arr, logoLine) =>
+      arr < logoLine?.text.join('').length
+        ? (arr = logoLine?.text.join('').length)
+        : arr,
+    0
+  );
+}
+
 function separator(size = 6) {
   return chalk.whiteBright('-'.repeat(size));
 }
@@ -44,3 +54,25 @@ function infosComponents(infosObject) {
     key === 'separator' ? separator() : componentsFormat(key, values[index])
   );
 }
+
+function print(infos, logo) {
+  logo = logo?.logo;
+  const infosComponentsList = infosComponents(infos);
+  const logoColorsLines = logoColors(logo);
+  const logoMax = logoMaxCharacterPerLine(logo);
+  const maxHeight =
+    logoColorsLines.length > infosComponentsList.length
+      ? logoColorsLines.length
+      : infosComponentsList.length;
+
+  let res = '';
+  for (let i = 0; i < maxHeight; i++) {
+    res += `${
+      logoColorsLines[i] +
+        ' '.repeat(logoMax - logo[i]?.text.join('').length) || ''
+    }   ${infosComponentsList[i] || ''} \n`;
+  }
+  return res;
+}
+
+console.log(print(infos, logo));
