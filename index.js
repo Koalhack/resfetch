@@ -14,5 +14,11 @@ const infos = YAML.load(infosRaw);
 const logoRaw = fs.readFileSync('Data/logo.yml');
 const logo = YAML.load(logoRaw);
 
-console.log(infos);
-logo?.logo.map(logoLine => console.log(logoLine?.text));
+function logoColors(logoObject) {
+  return logoObject.map(logoLine => {
+    const { text, color } = logoLine;
+    return color.map((_, index) => chalk[color[index]](text[index])).join('');
+  });
+}
+
+console.log(logoColors(logo?.logo));
