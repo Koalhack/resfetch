@@ -1,0 +1,12 @@
+logo:
+  - {text: ["%@@@@@%-@%*-      -*%@-%@@@@@%"], color: ["Cyan"]}
+  - {text: ["-@@@@@%","-@@@@@-  -@@@@@-%@@@@@-" ], color: ["DarkCyan", "Cyan"]}
+  - {text: [" .*@@@%-@@@@@","@..@@@@@@-%@@@*. "], color: ["DarkCyan", "Cyan"]}
+  - {text: ["    :==:","++++++::+", "+++++:==:"], color: ["Blue", "DarkCyan", "Cyan"]}
+  - {text: ["  -#@@%-@@@","@@@=:@@@","@@@-%@@#-"], color: ["Blue, DarkCyan", "Cyan"]}
+  - {text: [".%","@@@@%-@@@@","@@= +@@@@@","-%@@@@%."], color: ["DarkBlue", "Blue", "DarkCyan", "Cyan"]}
+  - {text: ["#@@","@@@%-@@","@@@@=  :*@@@-","%@@@@@#"], color: ["DarkBlue", "Blue", "DarkCyan", "Cyan"]}
+  - {text: ["++","++++=",":++++++:     ",":+:=++","++++"], color: [DarkMagenta, "DarkBlue", "Blue", "DarkCyan", "Cyan"]}
+  - {text: ["#@@","@@@%-@","@@@@@:  ",":*@@@-%@@","@@@#"], color: [DarkMagenta, "DarkBlue", "Blue", "DarkCyan", "Cyan"]}
+  - {text: [".%@@@@%","-@@@@@=  *","@@@@@-%","@@@","@%."], color: [DarkMagenta, "DarkBlue", "Blue", "DarkCyan", "Cyan"]}
+  - {text: ["  -*%@%-@@#=.","  -@@@@@@","-%@%","*-"], color: [DarkMagenta, "DarkBlue", "Blue", "DarkCyan"]}

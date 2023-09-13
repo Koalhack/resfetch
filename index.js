@@ -15,3 +15,4 @@ const logoRaw = fs.readFileSync('Data/logo.yml');
 const logo = YAML.load(logoRaw);
 
 console.log(infos);
+logo?.logo.map(logoLine => console.log(logoLine?.text));
