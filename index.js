@@ -16,6 +16,7 @@ const logo = YAML.load(logoRaw);
 
 //NOTE: Functions
 
+//NOTE: get logos with correct colors
 function logoColors(logoObject) {
   return logoObject.map(logoLine => {
     const { text, color } = logoLine;
@@ -23,6 +24,7 @@ function logoColors(logoObject) {
   });
 }
 
+//NOTE: Get the longuest line length
 function logoMaxCharacterPerLine(logoObject) {
   return logoObject.reduce(
     (arr, logoLine) =>
@@ -37,6 +39,7 @@ function separator(size = 6) {
   return chalk.whiteBright('-'.repeat(size));
 }
 
+//NOTE: Basic Format for the infos structure
 function componentsFormat(key, value) {
   if (Array.isArray(value)) {
     value = value.join(', ');
@@ -47,6 +50,7 @@ function componentsFormat(key, value) {
   )}`;
 }
 
+//NOTE: Get the list of all
 function infosComponents(infosObject) {
   const keys = Object.keys(infosObject);
   const values = Object.values(infosObject);
@@ -55,8 +59,44 @@ function infosComponents(infosObject) {
   );
 }
 
+//NOTE: get theme colors blocks
+function colorBlock(offset = 0) {
+  const blockSize = 3;
+  const themeColors = [
+    'black',
+    'red',
+    'green',
+    'yellow',
+    'blue',
+    'magenta',
+    'cyan',
+    'white',
+    'blackBright',
+    'redBright',
+    'greenBright',
+    'yellowBright',
+    'blueBright',
+    'magentaBright',
+    'cyanBright',
+    'whiteBright'
+  ];
+
+  let blocks = ' '.repeat(offset);
+  themeColors.forEach((color, index) => {
+    if (index === themeColors.length / 2) {
+      blocks += `\n${' '.repeat(offset)}`;
+    }
+
+    blocks += chalk[color]('█'.repeat(blockSize));
+  });
+
+  return blocks;
+}
+
+//NOTE: display neofech like resume
 function print(infos, logo) {
   logo = logo?.logo;
+  const logoInformationsGap = 3;
   const infosComponentsList = infosComponents(infos);
   const logoColorsLines = logoColors(logo);
   const logoMax = logoMaxCharacterPerLine(logo);
@@ -65,14 +105,15 @@ function print(infos, logo) {
       ? logoColorsLines.length
       : infosComponentsList.length;
 
-  let res = '';
+  let structuredLogoInfos = '';
   for (let i = 0; i < maxHeight; i++) {
-    res += `${
+    structuredLogoInfos += `${
       logoColorsLines[i] +
         ' '.repeat(logoMax - logo[i]?.text.join('').length) || ''
-    }   ${infosComponentsList[i] || ''} \n`;
+    }${' '.repeat(logoInformationsGap)}${infosComponentsList[i] || ''} \n`;
   }
-  return res;
+
+  console.log(structuredLogoInfos + colorBlock(logoMax + logoInformationsGap));
 }
 
-console.log(print(infos, logo));
+print(infos, logo);
