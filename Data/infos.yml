@@ -2,11 +2,19 @@ Pseudonyme: "Koalhack"
 Firstname: "Alexandre"
 Lastname: "Saner"
 Age: 23
+Gender: "Male"
+Nationality: "Franco-Swiss"
+d: "bonjour"
+Degrees:
+  - "BAC STI2D"
+  - "OC Digital Project Management"
+  - "DUT MMI"
+  - "LP AMIO"
 Hobbies:
   - "Cinema"
   - "Photography"
   - "video Games"
-Skills: 
+Skills:
   - "Project Management"
   - "Design UX/UI"
   - "Design 2D/3D"
@@ -19,3 +27,8 @@ Languages:
   - "PHP"
   - "HTML5"
   - "CSS3"
+Tools:
+  - "Neovim"
+  - "Docker"
+  - "NodeJS"
+  - "Wakapi"

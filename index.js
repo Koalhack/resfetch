@@ -39,7 +39,7 @@ function separator(size = 6) {
   return chalk.whiteBright('-'.repeat(size));
 }
 
-//NOTE: Basic Format for the infos structure
+//NOTE: Basic Format and style for the infos structure
 function componentsFormat(key, value) {
   if (Array.isArray(value)) {
     value = value.join(', ');
@@ -50,13 +50,11 @@ function componentsFormat(key, value) {
   )}`;
 }
 
-//NOTE: Get the list of all
+//NOTE: Get the list of all informations structured
 function infosComponents(infosObject) {
   const keys = Object.keys(infosObject);
   const values = Object.values(infosObject);
-  return keys.map((key, index) =>
-    key === 'separator' ? separator() : componentsFormat(key, values[index])
-  );
+  return keys.map((key, index) => componentsFormat(key, values[index]));
 }
 
 //NOTE: get theme colors blocks
@@ -93,7 +91,7 @@ function colorBlock(offset = 0) {
   return blocks;
 }
 
-//NOTE: display neofech like resume
+//NOTE: display neofetch like resume
 function print(infos, logo) {
   logo = logo?.logo;
   const logoInformationsGap = 3;
@@ -107,10 +105,11 @@ function print(infos, logo) {
 
   let structuredLogoInfos = '';
   for (let i = 0; i < maxHeight; i++) {
-    structuredLogoInfos += `${
-      logoColorsLines[i] +
-        ' '.repeat(logoMax - logo[i]?.text.join('').length) || ''
-    }${' '.repeat(logoInformationsGap)}${infosComponentsList[i] || ''} \n`;
+    const logoActiveLine = logo[i]?.text.join('');
+
+    structuredLogoInfos += `${logoColorsLines[i] || ''}${' '.repeat(
+      logoMax - (logoActiveLine?.length || 0)
+    )}${' '.repeat(logoInformationsGap)}${infosComponentsList[i] || ''} \n`;
   }
 
   console.log(structuredLogoInfos + colorBlock(logoMax + logoInformationsGap));
