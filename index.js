@@ -57,8 +57,13 @@ function infosComponents(infosObject) {
   return keys.map((key, index) => componentsFormat(key, values[index]));
 }
 
+function addOffset(size) {
+  return ' '.repeat(size);
+}
+
 //NOTE: get theme colors blocks
-function colorBlock(offset = 0) {
+function colorBlocksList() {
+  const blockStyle = '█';
   const blockSize = 3;
   const themeColors = [
     'black',
@@ -79,16 +84,21 @@ function colorBlock(offset = 0) {
     'whiteBright'
   ];
 
-  let blocks = ' '.repeat(offset);
-  themeColors.forEach((color, index) => {
-    if (index === themeColors.length / 2) {
-      blocks += `\n${' '.repeat(offset)}`;
+  return themeColors.map(color => chalk[color](blockStyle.repeat(blockSize)));
+}
+
+function styledColorBlocks(offset) {
+  const colorBlocks = colorBlocksList();
+  let styledColorBlocks = addOffset(offset);
+  colorBlocks.forEach((block, index) => {
+    if (index === colorBlocks.length / 2) {
+      styledColorBlocks += '\n' + addOffset(offset);
     }
 
-    blocks += chalk[color]('█'.repeat(blockSize));
+    styledColorBlocks += block;
   });
 
-  return blocks;
+  return styledColorBlocks;
 }
 
 //NOTE: display neofetch like resume
@@ -112,7 +122,9 @@ function print(infos, logo) {
     )}${' '.repeat(logoInformationsGap)}${infosComponentsList[i] || ''} \n`;
   }
 
-  console.log(structuredLogoInfos + colorBlock(logoMax + logoInformationsGap));
+  console.log(
+    structuredLogoInfos + styledColorBlocks(logoMax + logoInformationsGap)
+  );
 }
 
 print(infos, logo);
