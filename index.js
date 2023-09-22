@@ -5,6 +5,8 @@ import fs from 'fs';
 import YAML from 'js-yaml';
 import chalk from 'chalk';
 import { Command } from 'commander';
+//NOTE: Constante variables
+const lineBreak = '\n';
 
 //NOTE: Load Infos YAML file
 const infosRaw = fs.readFileSync('Data/infos.yml');
@@ -92,7 +94,7 @@ function styledColorBlocks(offset) {
   let styledColorBlocks = addOffset(offset);
   colorBlocks.forEach((block, index) => {
     if (index === colorBlocks.length / 2) {
-      styledColorBlocks += '\n' + addOffset(offset);
+      styledColorBlocks += lineBreak + addOffset(offset);
     }
 
     styledColorBlocks += block;
@@ -119,11 +121,16 @@ function print(infos, logo) {
 
     structuredLogoInfos += `${logoColorsLines[i] || ''}${' '.repeat(
       logoMax - (logoActiveLine?.length || 0)
-    )}${' '.repeat(logoInformationsGap)}${infosComponentsList[i] || ''} \n`;
+    )}${' '.repeat(logoInformationsGap)}${
+      infosComponentsList[i] || ''
+    } ${lineBreak}`;
   }
 
   console.log(
-    structuredLogoInfos + styledColorBlocks(logoMax + logoInformationsGap)
+    structuredLogoInfos +
+      lineBreak +
+      styledColorBlocks(logoMax + logoInformationsGap) +
+      lineBreak
   );
 }
 
